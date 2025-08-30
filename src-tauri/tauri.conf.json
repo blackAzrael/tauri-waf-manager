@@ -1,0 +1,121 @@
+{
+  "$schema": "https://schema.tauri.app/config/2.0.json",
+  "productName": "WAF配置管理器",
+  "version": "0.1.0",
+  "identifier": "com.example.waf-manager",
+  "build": {
+    "beforeDevCommand": "",
+    "beforeBuildCommand": "",
+    "frontendDist": "../src"
+
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "WAF配置管理器",
+        "width": 1200,
+        "height": 800,
+        "minWidth": 800,
+        "minHeight": 600,
+        "resizable": true,
+        "fullscreen": false,
+        "decorations": true,
+        "center": true
+      }
+    ],
+    "security": {
+      "csp": null,
+      "freezePrototype": false
+
+    }
+  },
+  "bundle": {
+    "active": true,
+    "category": "DeveloperTool",
+    "copyright": "Copyright © 2024",
+    "shortDescription": "WAF配置管理器",
+    "longDescription": "一个用于配置和管理WAF反向代理服务器的桌面应用程序，基于Pingora构建，提供直观的图形界面来配置安全规则、监控系统状态和查看日志。",
+    "targets": "all",
+    "externalBin": [],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "resources": [],
+    "publisher": "WAF Manager Team",
+    "macOS": {
+      "frameworks": [],
+      "minimumSystemVersion": "10.13",
+      "exceptionDomain": "",
+      "signingIdentity": null,
+      "providerShortName": null,
+      "entitlements": null
+    },
+    "linux": {
+      "deb": {
+        "depends": []
+      },
+      "appimage": {
+        "bundleMediaFramework": false
+      }
+    },
+    "windows": {
+      "certificateThumbprint": null,
+      "digestAlgorithm": "sha256",
+      "timestampUrl": "",
+      "tsp": false,
+      "wix": {
+        "language": ["zh-CN", "en-US"]
+      },
+      "nsis": {
+        "displayLanguageSelector": true,
+        "languages": ["SimpChinese", "English"]
+      }
+    }
+  },
+  "plugins": {
+    "shell": {
+      "open": true,
+      "scope": []
+    },
+    "fs": {
+      "scope": [
+        "$APPDATA/**",
+        "$APPCONFIG/**",
+        "$APPLOCALDATA/**",
+        "$APPLOG/**",
+        "$HOME/.local/share/waf-manager/**",
+        "$HOME/Library/Application Support/waf-manager/**",
+        "$HOME/AppData/Roaming/waf-manager/**",
+        "./config/**",
+        "./logs/**"
+      ],
+      "readFile": true,
+      "writeFile": true,
+      "readDir": true,
+      "createDir": true,
+      "removeDir": false,
+      "removeFile": true,
+      "renameFile": false,
+      "copyFile": false,
+      "exists": true,
+      "stat": true
+    },
+    "dialog": {
+      "open": true,
+      "save": true,
+      "message": true,
+      "ask": true,
+      "confirm": true
+    },
+    "updater": {
+      "active": true,
+      "endpoints": [],
+      "dialog": true,
+      "pubkey": ""
+    }
+  }
+}
