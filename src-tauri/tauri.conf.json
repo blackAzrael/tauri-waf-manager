@@ -10,6 +10,7 @@
 
   },
   "app": {
+    "withGlobalTauri": true,
     "windows": [
       {
         "title": "WAF配置管理器",

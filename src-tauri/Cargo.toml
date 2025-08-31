@@ -29,3 +29,5 @@ default = ["custom-protocol"]
 custom-protocol = ["tauri/custom-protocol"]
 pingora = ["dep:pingora"]
 
+[build]
+target = "x86_64-pc-windows-gnu"

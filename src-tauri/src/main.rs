@@ -210,6 +210,7 @@ async fn save_config(
 
 #[tauri::command]
 async fn start_server(state: State<'_, AppState>) -> Result<(), String> {
+    println!("WAF Manager start_server successfully ");
     let config = {
         let config_guard = state.config.lock()
             .map_err(|e| format!("Failed to lock config: {}", e))?;
@@ -307,6 +308,7 @@ async fn test_backend_connection(host: String, port: u16) -> Result<bool, String
     use tokio::time::{timeout, Duration};
 
     let address = format!("{}:{}", host, port);
+    println!("Connecting to {:?}", address);
 
     match timeout(Duration::from_secs(5), TcpStream::connect(&address)).await {
         Ok(Ok(_)) => {
@@ -371,7 +373,7 @@ pub fn run() {
 
             app.manage(app_state);
 
-            println!("WAF Manager initialized successfully with Tauri 2.x");
+            println!("WAF Manager initialized successfully with 11111 Tauri 2.x");
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![

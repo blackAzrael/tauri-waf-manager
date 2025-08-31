@@ -1,4 +1,6 @@
-const { invoke } = window.__TAURI__.tauri;
+const { invoke } = window.__TAURI__.core;
+
+
 //
 // let greetInputEl;
 // let greetMsgEl;

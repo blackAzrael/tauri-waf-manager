@@ -7,16 +7,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.0/vue.global.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script type="module" src="/main.js" defer></script>
+
+
     <style>
         .fade-enter-active, .fade-leave-active {
             transition: opacity 0.3s ease;
         }
+
         .fade-enter-from, .fade-leave-to {
             opacity: 0;
         }
+
         .slide-up-enter-active, .slide-up-leave-active {
             transition: all 0.3s ease;
         }
+
         .slide-up-enter-from, .slide-up-leave-to {
             opacity: 0;
             transform: translateY(10px);
@@ -25,6 +31,7 @@
 </head>
 <body class="bg-gray-100 font-sans">
 <div id="app" class="min-h-screen">
+    <!--    {{msg}}-->
     <!-- 顶部导航栏 -->
     <nav class="bg-white shadow-lg border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4">
@@ -36,8 +43,10 @@
                 </div>
                 <div class="flex items-center space-x-4">
                     <div class="flex items-center">
-                        <div class="h-3 w-3 rounded-full mr-2" :class="serverStatus.running ? 'bg-green-500' : 'bg-red-500'"></div>
-                        <span class="text-sm font-medium" :class="serverStatus.running ? 'text-green-600' : 'text-red-600'">
+                        <div class="h-3 w-3 rounded-full mr-2"
+                             :class="serverStatus.running ? 'bg-green-500' : 'bg-red-500'"></div>
+                        <span class="text-sm font-medium"
+                              :class="serverStatus.running ? 'text-green-600' : 'text-red-600'">
                                 {{ serverStatus.running ? '运行中' : '已停止' }}
                             </span>
                     </div>
@@ -76,7 +85,8 @@
                     </div>
                     <div class="ml-4">
                         <p class="text-sm font-medium text-gray-600">已处理请求</p>
-                        <p class="text-2xl font-bold text-gray-900">{{ serverStatus.requests_processed?.toLocaleString() || 0 }}</p>
+                        <p class="text-2xl font-bold text-gray-900">
+                            {{ serverStatus.requests_processed?.toLocaleString() || 0 }}</p>
                     </div>
                 </div>
             </div>
@@ -87,7 +97,8 @@
                     </div>
                     <div class="ml-4">
                         <p class="text-sm font-medium text-gray-600">被阻止请求</p>
-                        <p class="text-2xl font-bold text-gray-900">{{ serverStatus.blocked_requests?.toLocaleString() || 0 }}</p>
+                        <p class="text-2xl font-bold text-gray-900">
+                            {{ serverStatus.blocked_requests?.toLocaleString() || 0 }}</p>
                     </div>
                 </div>
             </div>
@@ -307,67 +318,67 @@
     </div>
 
     <!-- 添加规则模态框 -->
-<!--    <div v-if="showAddRuleModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">-->
-<!--        <div class="bg-white rounded-xl shadow-xl max-w-md w-full mx-4">-->
-<!--            <div class="p-6">-->
-<!--                <h3 class="text-lg font-semibold text-gray-900 mb-4">添加自定义规则</h3>-->
+    <!--    <div v-if="showAddRuleModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">-->
+    <!--        <div class="bg-white rounded-xl shadow-xl max-w-md w-full mx-4">-->
+    <!--            <div class="p-6">-->
+    <!--                <h3 class="text-lg font-semibold text-gray-900 mb-4">添加自定义规则</h3>-->
 
-<!--                <div class="space-y-4">-->
-<!--                    <div>-->
-<!--                        <label class="block text-sm font-medium text-gray-700 mb-2">规则名称</label>-->
-<!--                        <input-->
-<!--                                v-model="newRule.name"-->
-<!--                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"-->
-<!--                                placeholder="输入规则名称"-->
-<!--                        >-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <label class="block text-sm font-medium text-gray-700 mb-2">正则表达式模式</label>-->
-<!--                        <input-->
-<!--                                v-model="newRule.pattern"-->
-<!--                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono"-->
-<!--                                placeholder="输入正则表达式"-->
-<!--                        >-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <label class="block text-sm font-medium text-gray-700 mb-2">执行动作</label>-->
-<!--                        <select-->
-<!--                                v-model="newRule.action"-->
-<!--                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"-->
-<!--                        >-->
-<!--                            <option value="block">阻止</option>-->
-<!--                            <option value="allow">允许</option>-->
-<!--                            <option value="log">仅记录</option>-->
-<!--                        </select>-->
-<!--                    </div>-->
-<!--                    <div class="flex items-center">-->
-<!--                        <input-->
-<!--                                v-model="newRule.enabled"-->
-<!--                                type="checkbox"-->
-<!--                                id="rule_enabled"-->
-<!--                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"-->
-<!--                        >-->
-<!--                        <label for="rule_enabled" class="ml-2 block text-sm text-gray-700">启用此规则</label>-->
-<!--                    </div>-->
-<!--                </div>-->
+    <!--                <div class="space-y-4">-->
+    <!--                    <div>-->
+    <!--                        <label class="block text-sm font-medium text-gray-700 mb-2">规则名称</label>-->
+    <!--                        <input-->
+    <!--                                v-model="newRule.name"-->
+    <!--                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"-->
+    <!--                                placeholder="输入规则名称"-->
+    <!--                        >-->
+    <!--                    </div>-->
+    <!--                    <div>-->
+    <!--                        <label class="block text-sm font-medium text-gray-700 mb-2">正则表达式模式</label>-->
+    <!--                        <input-->
+    <!--                                v-model="newRule.pattern"-->
+    <!--                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono"-->
+    <!--                                placeholder="输入正则表达式"-->
+    <!--                        >-->
+    <!--                    </div>-->
+    <!--                    <div>-->
+    <!--                        <label class="block text-sm font-medium text-gray-700 mb-2">执行动作</label>-->
+    <!--                        <select-->
+    <!--                                v-model="newRule.action"-->
+    <!--                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"-->
+    <!--                        >-->
+    <!--                            <option value="block">阻止</option>-->
+    <!--                            <option value="allow">允许</option>-->
+    <!--                            <option value="log">仅记录</option>-->
+    <!--                        </select>-->
+    <!--                    </div>-->
+    <!--                    <div class="flex items-center">-->
+    <!--                        <input-->
+    <!--                                v-model="newRule.enabled"-->
+    <!--                                type="checkbox"-->
+    <!--                                id="rule_enabled"-->
+    <!--                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"-->
+    <!--                        >-->
+    <!--                        <label for="rule_enabled" class="ml-2 block text-sm text-gray-700">启用此规则</label>-->
+    <!--                    </div>-->
+    <!--                </div>-->
 
-<!--                <div class="flex justify-end space-x-3 mt-6">-->
-<!--                    <button-->
-<!--                            @click="showAddRuleModal = false"-->
-<!--                            class="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300"-->
-<!--                    >-->
-<!--                        取消-->
-<!--                    </button>-->
-<!--                    <button-->
-<!--                            @click="addCustomRule"-->
-<!--                            class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"-->
-<!--                    >-->
-<!--                        添加规则-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+    <!--                <div class="flex justify-end space-x-3 mt-6">-->
+    <!--                    <button-->
+    <!--                            @click="showAddRuleModal = false"-->
+    <!--                            class="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300"-->
+    <!--                    >-->
+    <!--                        取消-->
+    <!--                    </button>-->
+    <!--                    <button-->
+    <!--                            @click="addCustomRule"-->
+    <!--                            class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"-->
+    <!--                    >-->
+    <!--                        添加规则-->
+    <!--                    </button>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
 
     <!-- 通知消息 -->
     <div v-if="notification.show" class="fixed top-4 right-4 z-50">
@@ -457,17 +468,44 @@
     };
 
     // 根据环境选择使用真实API还是模拟API
-    // const apiInvoke = window.__TAURI__ ? invoke : mockInvoke;
-    const apiInvoke = mockInvoke;
+    const apiInvoke = window.__TAURI__ ? invoke : mockInvoke;
+    // const apiInvoke = mockInvoke;
 
-    const { createApp } = Vue;
-    console.error("0000000000000000000")
+    const {createApp} = Vue;
 
     createApp({
         data() {
             return {
                 activeTab: 'server',
-                config: {},
+                config: {
+                    server: {
+                        listen_port: 6188,
+                        backend_host: "127.0.0.1",
+                        backend_port: 8080,
+                        workers: 4,
+                        enable_ssl: false,
+                        ssl_cert_path: null,
+                        ssl_key_path: null
+                    },
+                    security: {
+                        blocked_ips: ["192.168.1.100"],
+                        blocked_countries: [],
+                        whitelist_ips: ["127.0.0.1"],
+                        sql_injection_rules: [],
+                        xss_rules: [],
+                        custom_rules: [
+                            {
+                                id: "1",
+                                name: "SQL注入检测",
+                                pattern: "(?i)(union|select|insert|update|delete)",
+                                action: "block",
+                                enabled: true
+                            }
+                        ],
+                        max_request_size: 10000000,
+                        enable_geo_blocking: false
+                    },
+                },
                 serverStatus: {},
                 logs: [],
                 testing: false,
@@ -492,6 +530,7 @@
             };
         },
         async mounted() {
+            console.log(this.config)
             await this.loadConfig();
             await this.loadServerStatus();
             await this.loadLogs();
@@ -505,7 +544,7 @@
             async loadConfig() {
                 try {
                     this.config = await apiInvoke('get_config');
-                    console.error(this.config)
+                    console.log(this.config)
                     console.error("1111111111111111111111111")
                 } catch (error) {
                     console.error('加载配置失败:', error);
@@ -536,6 +575,7 @@
             },
             async startServer() {
                 try {
+                    console.log("start_server 111111111111111")
                     await apiInvoke('start_server');
                     this.showNotification('服务器启动成功', 'success');
                     await this.loadServerStatus();
