@@ -467,8 +467,9 @@
         }
     };
 
-    // 根据环境选择使用真实API还是模拟API
-    const apiInvoke = window.__TAURI__ ? invoke : mockInvoke;
+
+    const apiInvoke = window.__TAURI__ ? window.invoke : mockInvoke;
+
     // const apiInvoke = mockInvoke;
 
     const {createApp} = Vue;
